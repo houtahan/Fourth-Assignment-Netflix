@@ -109,12 +109,26 @@ class User {
     public static ArrayList<TVShow> viewWatchHistory() {
         return watchHistory;
     }
+    // The next method randomly recommends a TV show
     public static TVShow getRecommendations() {
         // Implement get recommendations logic here
+        Scanner sc = new Scanner(System.in);
         for (TVShow tvshows : getTvShows()) {
             Random rand = new Random();
             TVShow randomShow = getTvShows().get(rand.nextInt(tvShows.size()));
-            return randomShow;
+            System.out.print(randomShow);
+            System.out.println("Would you like to watch this show?");
+            System.out.println("Press 1 for Yes and 2 for NO");
+            int choice = sc.nextInt();
+            if (choice == 1){
+                System.out.println("Enjoy!");
+            }
+            if (choice == 2){
+                Main.userMenu();
+            }
+            if (choice > 2){
+                System.out.println("This option does not exist!");
+            }
         }
         return null;
     }

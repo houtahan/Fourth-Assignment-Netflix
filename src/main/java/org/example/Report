@@ -1,1 +1,37 @@
-fiuuioyui
+The assignment was to create a movie platform like Netflix and have users to access different features on this app.
+The most important objectives were to learn about inheritance and polymorphism and try to use them in actual codes.
+The approach was to have 5 classes for this code and code the menu in the main class.
+In the TVShow class which is a parent class of the movie class we write the attributes of a TV show and in the Movie
+class we write the attributes of a movie which has length attribute plus the TVShow attributes.
+In the NetflixService class we code the functions related to the needs of the user and we complete them in the User class.
+The most challenging part was to relate the classes and attributes in a correct way and it was done successfully through
+searching and learning more about inheritance and polymorphism.
+To make sure the code was complete and correct I ran it and made sure the arraylists were storing the correct variables.
+
+
+The UML:
+
+
+    TVShow class         Movie extends TVShow      Main class        NetflixService class              User class
+    ------------         --------------------      -----------       --------------------              ----------
+    String title            int length              runMenu()        ArrayList<User> users            String username
+    String genre             Movie()                userMenu()       ArrayList<TVShow> tvShows        String password
+    int releaseYear         getLength()                              ArrayList<Movie> movies       ArrayList<TVShow> faveShows
+    int duration            setLength()                           ArrayList<TVShow> getTvShows()   ArrayList<TVShow> watchHistory
+    double rating                                                         addTVShow()                    User()
+ArrayList<String> cast                                                    addMovie()                   getUsername()
+      TVShow()                                                            createAccount()              setUsername()
+      getTitle()                                                           login()                     getPassword()
+      setTitle()                                                           logout()                    setPassword()
+      getGenre()                                                       searchTVShowByTitle()           getFaveShows()
+      setGenre()                                                       searchTVShowByGenre()           setFaveShows()
+  getReleaseYear()                                                  searchTVShowbyReleaseYear()       getWatchHistory()
+   setReleaseYear()                                                     searchMovieByTitle()          setWatchHistory()
+    getDuration()                                                       searchMovieByGenre()           searchByTitle()
+    setDuration()                                                    searchMovieByReleaseYear()        searchByGenre()
+    getRating()                                                                                       searchByReleaseYear()
+    setRating()                                                                                         addToFavorites()
+ArrayList<String> getCast()                                                                            addToWatchHistory()
+ArrayList<String> setCast()                                                                       ArrayList<TVShow> viewFavorites()
+    toString()                                                                                    ArrayList<TVShow> viewWatchHistory()
+                                                                                                     TVShow getRecommendations()
