@@ -7,9 +7,9 @@ class TVShow {
     *The TVShow should have a title , genre, release year, duration and a rating.
      *The TVShow should have an ArrayList of the cast.
      */
-    private static String title;
-    private static String genre;
-    private static int releaseYear;
+    private String title;
+    private String genre;
+    private int releaseYear;
     private int duration;
     private double rating;
 
@@ -24,7 +24,7 @@ class TVShow {
         this.cast = cast;
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -32,7 +32,7 @@ class TVShow {
         this.title = title;
     }
 
-    public static String getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -40,7 +40,7 @@ class TVShow {
         this.genre = genre;
     }
 
-    public static int getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
