@@ -2,6 +2,8 @@ package org.example;
 
 import java.util.Scanner;
 
+import static org.example.NetflixService.users;
+
 public class Main {
     //don't limit yourself to our template ***
 
@@ -49,7 +51,13 @@ public class Main {
                 break;
         }
     }
-    public static void userMenu(){
+    public static void userMenu(String username, String password){
+        User user = null;
+        for (User user1 : users) {
+            if (user1.getUsername().equals(username) && user1.getPassword().equals(password)) {
+                user = user1;
+            }
+        }
         String title, genre;
         int releaseYear;
         System.out.println("Welcome to your account!");
@@ -73,7 +81,7 @@ public class Main {
             case 1:
                 System.out.println("Enter the movie title");
                 title = sc.next();
-                NetflixService.searchMovieByTitle(title);
+                NetflixService.searchMovieByTitle(title, user);
                 break;
             case 2:
                 System.out.println("Enter the movie genre");
@@ -88,39 +96,39 @@ public class Main {
             case 4:
                 System.out.println("Enter the movie title");
                 title = sc.next();
-                NetflixService.searchTVShowByTitle(title);
+                NetflixService.searchTVShowByTitle(title, user);
                 break;
             case 5:
                 System.out.println("Enter the movie genre");
                 genre = sc.next();
-                NetflixService.searchTVShowByGenre(genre);
+                NetflixService.searchTVShowByGenre(genre, user);
                 break;
             case 6:
                 System.out.println("Enter the movie release year");
                 releaseYear = sc.nextInt();
-                NetflixService.searchTVShowbyReleaseYear(releaseYear);
+                NetflixService.searchTVShowbyReleaseYear(releaseYear, user);
                 break;
             case 7:
                 System.out.println("Enter the movie title");
                 title = sc.next();
-                User.searchByTitle(title);
+                user.searchByTitle(title, user);
                 break;
             case 8:
                 System.out.println("Enter the movie genre");
                 genre = sc.next();
-                User.searchByGenre(genre);
+                user.searchByGenre(genre, user);
                 break;
             case 9:
                 System.out.println("Enter the movie release year");
                 releaseYear = sc.nextInt();
-                User.searchByReleaseYear(releaseYear);
+                user.searchByReleaseYear(releaseYear, user);
                 break;
             case 10:
-                User.viewFavorites();
+                user.viewFavorites();
             case 11:
-                User.viewWatchHistory();
+                user.viewWatchHistory();
             case 12:
-                User.getRecommendations();
+                user.getRecommendations(user);
             case 13:
                 NetflixService.logout();
             default:

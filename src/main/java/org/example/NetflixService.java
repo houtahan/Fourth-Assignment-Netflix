@@ -89,27 +89,23 @@ class NetflixService {
         // Implement create account logic here
         ArrayList emptyFaveShows = new ArrayList();
         ArrayList emptyWatchHistory = new ArrayList();
-        if (users.contains(username)){
-            System.out.println("Username already exists! Choose another one");
-        }
-        if (users.contains(password)){
-            System.out.println("Password already exists! Choose another one");
-        }
-        else{
-            User new_user = new User(username, password, emptyFaveShows, emptyWatchHistory);
-            users.add(new_user);
-            System.out.println("ACCOUNT CREATED SUCCESSFULLY");
-            System.out.println("Now we will send you to the main menu to login");
-            Main.runMenu();
-        }
+            if (users.contains(username)) {
+                System.out.println("salam");
+            } else {
+                User new_user = new User(username, password, emptyFaveShows, emptyWatchHistory);
+                users.add(new_user);
+                System.out.println("ACCOUNT CREATED SUCCESSFULLY");
+                System.out.println("Now we will send you to the main menu to login");
+                Main.runMenu();
+            }
     }
 
     public static boolean login(String username, String password) {
         // Implement login logic here
         for (User user : users){
-            if (User.getUsername().equals(username) && User.getPassword().equals(password)){
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 System.out.println("Welcome to your account!");
-                Main.userMenu();
+                Main.userMenu(username, password);
             }
             else{
                 System.out.println("Username or password is wrong");
@@ -124,11 +120,11 @@ class NetflixService {
         Main.runMenu();
     }
 
-    public static ArrayList<TVShow> searchTVShowByTitle(String title) {
+    public static ArrayList<TVShow> searchTVShowByTitle(String title, User user) {
         // Implement search by title logic here
         Scanner sc = new Scanner(System.in);
         for (TVShow tvShow : tvShows){
-            if (TVShow.getTitle().equals(title)){
+            if (tvShow.getTitle().equals(title)){
                 System.out.println("TV show " + title + " found!");
                 System.out.println("Please select an option");
                 System.out.println("1. Watch TV show");
@@ -138,46 +134,46 @@ class NetflixService {
                 choice = sc.nextInt();
                 switch (choice) {
                     case 1:
-                        User.addToWatchHistory(tvShow);
-                        User.addToFavorites(tvShow);
+                        user.addToWatchHistory(tvShow, user);
+                        user.addToFavorites(tvShow, user);
                         System.out.println("Enjoy!");
                         break;
                     case 2:
-                        User.addToFavorites(tvShow);
+                        user.addToFavorites(tvShow, user);
                     case 3:
-                        Main.userMenu();
+                        Main.userMenu(user.getUsername(), user.getPassword());
                 }
             }
         }
         return null;
     }
 
-    public static ArrayList<TVShow> searchTVShowByGenre(String genre) {
+    public static ArrayList<TVShow> searchTVShowByGenre(String genre, User user) {
         // Implement search by genre logic here
         ArrayList<TVShow> foundTVShow = new ArrayList();
         for (TVShow tvShow : tvShows){
-            if (TVShow.getGenre().equals(genre)){
+            if (tvShow.getGenre().equals(genre)){
                 foundTVShow.add(tvShow);
             }
         }
         return foundTVShow;
     }
 
-    public static ArrayList<TVShow> searchTVShowbyReleaseYear(int year) {
+    public static ArrayList<TVShow> searchTVShowbyReleaseYear(int year, User user) {
         // Implement search by release year logic here
         ArrayList<TVShow> foundTVShow = new ArrayList();
         for (TVShow tvShow : tvShows){
-            if (TVShow.getReleaseYear() == year){
+            if (tvShow.getReleaseYear() == year){
                 foundTVShow.add(tvShow);
             }
         }
         return foundTVShow;
     }
-    public static ArrayList<Movie> searchMovieByTitle(String title) {
+    public static ArrayList<Movie> searchMovieByTitle(String title, User user) {
         // Implement search by title logic here
         Scanner sc = new Scanner(System.in);
         for (Movie movie : movies){
-            if (Movie.getTitle().equals(title)){
+            if (movie.getTitle().equals(title)){
                 System.out.println("Movie " + title + " found!");
                 System.out.println("Please select an option");
                 System.out.println("1. Watch movie");
@@ -187,14 +183,14 @@ class NetflixService {
                 choice = sc.nextInt();
                 switch (choice) {
                     case 1:
-                        User.addToWatchHistory(movie);
-                        User.addToFavorites(movie);
+                        user.addToWatchHistory(movie, user);
+                        user.addToFavorites(movie, user);
                         System.out.println("Enjoy!");
                         break;
                     case 2:
-                        User.addToFavorites(movie);
+                        user.addToFavorites(movie, user);
                     case 3:
-                        Main.userMenu();
+                        Main.userMenu(user.getUsername(), user.getPassword());
                 }
             }
         }
@@ -205,7 +201,7 @@ class NetflixService {
         // Implement search by genre logic here
         ArrayList<Movie> foundMovie = new ArrayList();
         for (Movie movie : movies){
-            if (Movie.getGenre().equals(genre)){
+            if (movie.getGenre().equals(genre)){
                 foundMovie.add(movie);
             }
         }
@@ -216,7 +212,7 @@ class NetflixService {
         // Implement search by release year logic here
         ArrayList<Movie> foundMovie = new ArrayList();
         for (Movie movie : movies){
-            if (Movie.getReleaseYear() == year){
+            if (movie.getReleaseYear() == year){
                 foundMovie.add(movie);
             }
         }
